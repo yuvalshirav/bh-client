@@ -8,8 +8,10 @@
   App.on "before:start", (options = {}) ->
     _.defaults options,
       environment: "production"
+      api: "http://localhost:3000"
 
     App.options = options
+
 
   # Request to get application options by name
   App.reqres.setHandler "app:option", (name) ->

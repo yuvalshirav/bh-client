@@ -136,7 +136,7 @@ module.exports = (grunt) ->
         options:
           base: ['vendor', 'dist']
           open: true
-          port: 3000
+          port: 3001
           livereload: true
           middleware: (connect, options) ->
             middlewares = []
