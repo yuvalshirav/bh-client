@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Puppeteer</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type"  content="text/html charset=UTF-8" />
+
+    <!-- build:css:production styles.min.css -->
+    <link rel="stylesheet" href="/styles.css" />
+    <!-- /build -->
+  </head>
+  <body>
+    <div id="header" class="navbar navbar-default navbar-fixed-top"></div>
+    <div id="content" class="container"></div>
+
+    <!-- build:js:production app.min.js -->
+    <script src="/app.js"></script>
+    <!-- /build -->
+
+    <!-- build:template[production,dev] -->
+    <script>
+      $(function() {
+        App.start({
+          environment: "<%= environment %>"
+        });
+      });
+    </script>
+    <!-- /build -->
+  </body>
+</html>
