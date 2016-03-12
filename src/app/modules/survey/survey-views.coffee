@@ -40,8 +40,9 @@
     onSubmit: ->
       if @model.get("gender")
         response = new App.Entities.Response(user_id: @model.get("id"), response_answers: @collection)
-        response.save()
-        App.navigate("stats", true)
+        response.save
+          success:
+            App.navigate("stats", true)
       else
         alert("Please select gender") # TODO use via requiredAttributes
 
@@ -50,18 +51,16 @@
     tagName: "li"
 
     topAnswerByGender: (gender_id) ->
-      gender_id = "#{gender_id}"
-      window.zz = @model.collection.stats.attributes
-      answersCounts = _.pairs(@model.collection.stats.attributes[@model.get('id')]?[gender_id])
+      answersCounts = _.pairs(@model.collection.stats.attributes[@model.get('id')]?["#{gender_id}"])
       sorted = answersCounts?.sort (a,b) ->
         b[1] - a[1]
       console.log sorted
-      _.findWhere(@model.get('answers'), "id", parseInt(sorted[0][0],10))
+      _.findWhere(@model.get('answers'), id: parseInt(sorted[0][0],10))
 
     serializeData: ->
       _.extend @model.attributes,
-        topFemale: @topAnswerByGender(0)
-        topMale: @topAnswerByGender(1)
+        topFemale: @topAnswerByGender(1)
+        topMale: @topAnswerByGender(0)
 
   class Views.Stats extends App.Views.CompositeView
     template: "survey/stats"
